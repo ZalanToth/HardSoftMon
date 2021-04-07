@@ -6,7 +6,72 @@
         xmlns:local="clr-namespace:HardSoftMon"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <TabControl>
+        <TabItem Header="Hardver">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Alaplap" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+                <Label x:Name="al_gyarto" Content="Label" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.375,0.423" Width="242"/>
+                <Label x:Name="al_modell" Content="Label" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="242"/>
+                <Label x:Name="al_sorozatszam" Content="Label" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="237" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.119"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label x:Name="al_termek" Content="Label" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Width="242"/>
+                <Label Content="Processzor" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="pr_nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.158,0.538"/>
+                <Label x:Name="pr_magok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="pr_szalak" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.577"/>
+                <Label Content="Videókártya" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="145"/>
+                <Label Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="vk_nev" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="vk_vram" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ramokvalaszt" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" SelectionChanged="Valt"/>
+                <Label x:Name="mr_nev" Content="Label" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="mr_kapac" Content="Label" HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="mr_tipus" Content="Label" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Érzékelők">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Szoftver">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </TabItem>
+    </TabControl>
+
 </Window>
