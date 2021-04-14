@@ -40,10 +40,19 @@
                 <Label Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="vk_nev" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="vk_vram" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="ramokvalaszt" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" SelectionChanged="Valt"/>
+                <ComboBox x:Name="ramokvalaszt" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" SelectionChanged="ValtRAM"/>
                 <Label x:Name="mr_nev" Content="Label" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label x:Name="mr_kapac" Content="Label" HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label x:Name="mr_tipus" Content="Label" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="tipusok" Content="RAM Tipusok &#xD;&#xA;20&#x9;DDR&#xD;&#xA;21&#x9;DDR2&#xD;&#xA;24&#x9;DDR3&#xD;&#xA;26&#x9;DDR4&#xD;&#xA;" HorizontalAlignment="Left" Margin="171,108,0,0" Grid.Row="1" VerticalAlignment="Top" Height="87" Width="91"/>
+                <Button Content="?" HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="22" Height="22" Click="Button_Click"/>
+                <ComboBox x:Name="drivevalaszt" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+                <Label x:Name="nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="Gyart" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="particiok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="osszhely" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,130,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label Content="Memória" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Width="130"/>
+                <Label Content="Meghajtók lettek volna" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="99,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136"/>
             </Grid>
         </TabItem>
         <TabItem Header="Érzékelők">
@@ -61,15 +70,22 @@
         </TabItem>
         <TabItem Header="Szoftver">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <DataGrid x:Name="SzoftverDG"  HorizontalAlignment="Left" Height="371" Margin="10,10,0,0" VerticalAlignment="Top" Width="766" AutoGenerateColumns="False">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="BlanchedAlmond"></Setter>
+                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                            <Setter Property="BorderThickness" Value="0,0,1,2"></Setter>
+                            <Setter Property="BorderBrush" Value="Black"></Setter>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Név" Binding="{Binding Nev, Mode=OneWay}" Width="*"/>
+                        <DataGridTextColumn Header="verzió" Binding="{Binding Verzio, Mode=OneWay}" Width="*"/>
+                        <DataGridTextColumn Header="letöltés dátuma" Binding="{Binding Letoltes, Mode=OneWay}"  Width="*"/>
+                        <DataGridTextColumn Header="Kiadó" Binding="{Binding Kiado, Mode=OneWay}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </TabItem>
     </TabControl>

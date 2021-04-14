@@ -8,14 +8,14 @@ namespace HardSoftMon
 {
     class Ram
     {
-        public string tag { get; set; }
-        public string kapacitas { get; set; }
-        public string tipus { get; set; }
+        public string Tag { get; set; }
+        public string Kapacitas { get; set; }
+        public string Tipus { get; set; }
         public Ram(string tag, string kap, string tip)
         {
-            this.tag = tag;
-            this.kapacitas = kap;
-            this.tipus = tip;
+            this.Tag = tag;
+            this.Kapacitas = kap;
+            this.Tipus = tip;
         }
 
     }
