@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Management;
 using Microsoft.Win32;
 using System.IO;
+using OpenHardwareMonitor;
+using OpenHardwareMonitor.Hardware;
 
 namespace HardSoftMon
 {
@@ -28,8 +30,10 @@ namespace HardSoftMon
         List<Ram> ramok = new List<Ram>();
         List<Drives> driveok = new List<Drives>();
         bool ki = true;
+        Computer computer = new Computer() { CPUEnabled = true };
         public MainWindow()
         {
+            computer.Open();
             InitializeComponent();
             Alaplap();
             Processzor();
@@ -39,8 +43,30 @@ namespace HardSoftMon
             Szoftverek();
             ValtDrive();
             Betoltes();
+            GPUFok();
         }
-
+        public void GPUFok()
+        {
+            string gpufok = "";
+            foreach (var item in computer.Hardware)
+            {
+                if(item.HardwareType==HardwareType.GpuNvidia || item.HardwareType==HardwareType.GpuAti)
+                {
+                    item.Update();
+                    foreach (var x in item.Sensors)
+                    {
+                        if(x.SensorType==SensorType.Temperature)
+                        {
+                            if(x.Value!=null)
+                            {
+                                gpufok = $" a hőfok: {x.Value.Value}°C";
+                            }
+                        }
+                    }
+                }
+            }
+            gpufoklab.Content =gpufok;
+        }
         public void Alaplap()
         {
             ManagementObjectSearcher alaplap = new ManagementObjectSearcher("SELECT * FROM Win32_Baseboard");
@@ -90,17 +116,16 @@ namespace HardSoftMon
             foreach (var item in meghajtok.Get())
             {
                 if(item!=null)
-                    driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Name"].ToString(), item["Partitions"].ToString(),SizeSuffix(Convert.ToInt64(item["Size"].ToString()))));
+                    driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Name"].ToString(), item["Index"].ToString()));
             }
         }
         
         private void ValtDrive()
         {
-            /*Drives sldrive = driveok.Where(x => x.Gyarto == drivevalaszt.SelectedItem.ToString()).First();
+            Drives sldrive = driveok.Where(x => x.Index == drivevalaszt.SelectedItem.ToString()).First();
             nev.Content = $"Név: {sldrive.Nev}";
             Gyart.Content= $"{sldrive.Gyarto}";
-            osszhely.Content= $"{sldrive.Helyossz}";
-            particiok.Content= $"{sldrive.Particio}";*/
+            particiok.Content= $"{sldrive.Index}";
         }
         
 
@@ -120,10 +145,10 @@ namespace HardSoftMon
             {
                 ramokvalaszt.Items.Add(item.Tag);
             }
-            /*foreach(var item in driveok)
+            foreach(var item in driveok)
             {
-                drivevalaszt.Items.Add(item.Gyarto);
-            }*/
+                drivevalaszt.Items.Add(item.Nev);
+            }
         }
 
         private void Szoftverek()

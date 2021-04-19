@@ -53,6 +53,8 @@
                 <Label x:Name="osszhely" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,130,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label Content="Memória" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Width="130"/>
                 <Label Content="Meghajtók lettek volna" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="99,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136"/>
+                <Label x:Name="cpufoklab" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="gpufoklab" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
             </Grid>
         </TabItem>
         <TabItem Header="Érzékelők">
