@@ -31,9 +31,10 @@ namespace HardSoftMon
         List<Drives> driveok = new List<Drives>();
         bool ki = true;
         Computer computer = new Computer() { CPUEnabled = true };
+        // Double hofok = 0;
         public MainWindow()
         {
-            computer.Open();
+            computer.Open();W
             InitializeComponent();
             Alaplap();
             Processzor();
@@ -44,6 +45,7 @@ namespace HardSoftMon
             ValtDrive();
             Betoltes();
             GPUFok();
+            CPUFok();
         }
         public void GPUFok()
         {
@@ -66,6 +68,18 @@ namespace HardSoftMon
                 }
             }
             gpufoklab.Content =gpufok;
+        }
+
+        public void CPUFok()
+        {
+            ManagementObjectSearcher cpuxd = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
+            /*foreach (var item in cpuxd.Get())
+            {
+                hofok = Convert.ToDouble(item["CurrentTemperature"].ToString());
+                // Convert the value to celsius degrees
+                hofok = (hofok - 2732) / 10.0;
+            }
+            cpufoklab.Content =$"A CPU hőfoka: {hofok}";*/
         }
         public void Alaplap()
         {
@@ -116,16 +130,16 @@ namespace HardSoftMon
             foreach (var item in meghajtok.Get())
             {
                 if(item!=null)
-                    driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Name"].ToString(), item["Index"].ToString()));
+                    driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Name"].ToString(), item["Partitions"].ToString()));
             }
         }
         
         private void ValtDrive()
         {
-            Drives sldrive = driveok.Where(x => x.Index == drivevalaszt.SelectedItem.ToString()).First();
+           /* Drives sldrive = driveok.Where(x => x.Nev == drivevalaszt.SelectedItem.ToString()).First();
             nev.Content = $"Név: {sldrive.Nev}";
             Gyart.Content= $"{sldrive.Gyarto}";
-            particiok.Content= $"{sldrive.Index}";
+            particiok.Content= $"{sldrive.Index}"; */
         }
         
 
@@ -148,6 +162,9 @@ namespace HardSoftMon
             foreach(var item in driveok)
             {
                 drivevalaszt.Items.Add(item.Nev);
+                nev.Content = $"Név: {item.Nev}";
+                Gyart.Content = $"{item.Gyarto}";
+                particiok.Content = $"Partíciók száma: {item.Particio}";
             }
         }
 

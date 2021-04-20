@@ -10,14 +10,14 @@ namespace HardSoftMon
     {
         public string Gyarto { get; set; }
         public string Nev { get; set; }
-        public string Index { get; set; }
+        public string Particio { get; set; }
        // public string Helyossz { get; set; }
 
         public Drives(string gyar, string nev, string hm /*string ho*/)
         {
             this.Gyarto = gyar;
             this.Nev = nev;
-            this.Index = hm;
+            this.Particio = hm;
             //this.Helyossz = ho;
         }
     }
