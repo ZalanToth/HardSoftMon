@@ -46,7 +46,7 @@
                 <Label x:Name="mr_tipus" Content="Label" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label x:Name="tipusok" Content="RAM Tipusok &#xD;&#xA;20&#x9;DDR&#xD;&#xA;21&#x9;DDR2&#xD;&#xA;24&#x9;DDR3&#xD;&#xA;26&#x9;DDR4&#xD;&#xA;" HorizontalAlignment="Left" Margin="171,108,0,0" Grid.Row="1" VerticalAlignment="Top" Height="87" Width="91"/>
                 <Button Content="?" HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="22" Height="22" Click="Button_Click"/>
-                <ComboBox x:Name="drivevalaszt" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+                <ComboBox x:Name="drivevalaszt" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="ValtDrive"/>
                 <Label x:Name="nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label x:Name="Gyart" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label x:Name="particiok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>

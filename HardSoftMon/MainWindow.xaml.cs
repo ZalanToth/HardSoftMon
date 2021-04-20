@@ -34,15 +34,14 @@ namespace HardSoftMon
         // Double hofok = 0;
         public MainWindow()
         {
-            computer.Open();W
+            computer.Open();
             InitializeComponent();
             Alaplap();
             Processzor();
-            VidKar();       
+            VidKar();
             RAM();
             Meghajtok();
             Szoftverek();
-            ValtDrive();
             Betoltes();
             GPUFok();
             CPUFok();
@@ -52,14 +51,14 @@ namespace HardSoftMon
             string gpufok = "";
             foreach (var item in computer.Hardware)
             {
-                if(item.HardwareType==HardwareType.GpuNvidia || item.HardwareType==HardwareType.GpuAti)
+                if (item.HardwareType == HardwareType.GpuNvidia || item.HardwareType == HardwareType.GpuAti)
                 {
                     item.Update();
                     foreach (var x in item.Sensors)
                     {
-                        if(x.SensorType==SensorType.Temperature)
+                        if (x.SensorType == SensorType.Temperature)
                         {
-                            if(x.Value!=null)
+                            if (x.Value != null)
                             {
                                 gpufok = $" a hőfok: {x.Value.Value}°C";
                             }
@@ -67,7 +66,7 @@ namespace HardSoftMon
                     }
                 }
             }
-            gpufoklab.Content =gpufok;
+            gpufoklab.Content = gpufok;
         }
 
         public void CPUFok()
@@ -119,8 +118,8 @@ namespace HardSoftMon
             ManagementObjectSearcher memoria = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
             foreach (var item in memoria.Get())
             {
-                if(item!=null)
-                    ramok.Add(new Ram( item["Tag"].ToString(), SizeSuffix(Convert.ToInt64(item["Capacity"])).ToString(), item["MemoryType"].ToString() ));
+                if (item != null)
+                    ramok.Add(new Ram(item["Tag"].ToString(), SizeSuffix(Convert.ToInt64(item["Capacity"])).ToString(), item["MemoryType"].ToString()));
             }
         }
 
@@ -129,42 +128,35 @@ namespace HardSoftMon
             ManagementObjectSearcher meghajtok = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
             foreach (var item in meghajtok.Get())
             {
-                if(item!=null)
+                if (item != null)
                     driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Name"].ToString(), item["Partitions"].ToString()));
             }
         }
-        
-        private void ValtDrive()
-        {
-           /* Drives sldrive = driveok.Where(x => x.Nev == drivevalaszt.SelectedItem.ToString()).First();
-            nev.Content = $"Név: {sldrive.Nev}";
-            Gyart.Content= $"{sldrive.Gyarto}";
-            particiok.Content= $"{sldrive.Index}"; */
-        }
-        
 
-        
 
         private void ValtRAM(object sender, SelectionChangedEventArgs e)
         {
             Ram slram = ramok.Where(x => x.Tag == ramokvalaszt.SelectedItem.ToString()).First();
             mr_nev.Content = $"A memória: {slram.Tag}";
-            mr_kapac.Content= $"A kapacitása: {slram.Kapacitas}";
-            mr_tipus.Content= $"A típusa: {slram.Tipus}";
+            mr_kapac.Content = $"A kapacitása: {slram.Kapacitas}";
+            if (slram.Tipus == "20")
+                mr_tipus.Content = $"A típusa: DDR";
+            else if (slram.Tipus == "21")
+                mr_tipus.Content = $"A típusa: DDR2";
+            else if (slram.Tipus == "24")
+                mr_tipus.Content = $"A típusa: DDR3";
+            else if (slram.Tipus == "26")
+                mr_tipus.Content = $"A típusa: DDR4";
         }
-
         private void Betoltes()
         {
             foreach (var item in ramok)
             {
                 ramokvalaszt.Items.Add(item.Tag);
             }
-            foreach(var item in driveok)
+            foreach (var item in driveok)
             {
                 drivevalaszt.Items.Add(item.Nev);
-                nev.Content = $"Név: {item.Nev}";
-                Gyart.Content = $"{item.Gyarto}";
-                particiok.Content = $"Partíciók száma: {item.Particio}";
             }
         }
 
@@ -202,12 +194,12 @@ namespace HardSoftMon
                 tipusok.Visibility = Visibility.Hidden;
                 ki = false;
             }
-            else if(!ki)
+            else if (!ki)
             {
                 tipusok.Visibility = Visibility.Visible;
                 ki = true;
             }
-            
+
         }
 
         private string SizeSuffix(Int64 value)
@@ -220,5 +212,15 @@ namespace HardSoftMon
 
             return string.Format("{0:n1} {1}", adjustedSize, SizeSuffixes[mag]);
         }
+
+        private void ValtDrive(object sender, SelectionChangedEventArgs e)
+        {
+            Drives sldrive = driveok.Where(x => x.Nev == drivevalaszt.SelectedItem.ToString()).First();
+            nev.Content = $"Név: {sldrive.Nev}";
+            Gyart.Content = $"{sldrive.Gyarto}";
+            particiok.Content = $"A partíciók száma: {sldrive.Particio}";
+        }
     }
 }
+
+
