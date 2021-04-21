@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HardSoftMon"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="800">
     <TabControl>
         <TabItem Header="Hardver">
-            <Grid>
+            <Grid Margin="0,-53,0,2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -18,10 +18,10 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Alaplap" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
-                <Label x:Name="al_gyarto" Content="Label" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.375,0.423" Width="242"/>
-                <Label x:Name="al_modell" Content="Label" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="242"/>
-                <Label x:Name="al_sorozatszam" Content="Label" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="237" RenderTransformOrigin="0.5,0.5">
+                <Label Content="Alaplap" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Width="100"/>
+                <Label x:Name="al_gyarto" Content="Label" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.375,0.423" Width="242"/>
+                <Label x:Name="al_modell" Content="Label" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" Width="242"/>
+                <Label x:Name="al_sorozatszam" Content="Label" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="237" RenderTransformOrigin="0.5,0.5">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -31,34 +31,36 @@
                         </TransformGroup>
                     </Label.RenderTransform>
                 </Label>
-                <Label x:Name="al_termek" Content="Label" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Width="242"/>
-                <Label Content="Processzor" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="pr_nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.158,0.538"/>
-                <Label x:Name="pr_magok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="pr_szalak" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.577"/>
-                <Label Content="Videókártya" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="145"/>
+                <Label x:Name="al_termek" Content="Label" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Width="242"/>
+                <Label Content="Processzor" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="pr_nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.158,0.538"/>
+                <Label x:Name="pr_magok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="pr_szalak" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.211,0.577"/>
+                <Label Content="Videókártya" Grid.Column="2" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="145"/>
                 <Label Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="vk_nev" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="vk_vram" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="ramokvalaszt" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" SelectionChanged="ValtRAM"/>
-                <Label x:Name="mr_nev" Content="Label" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                <Label x:Name="mr_kapac" Content="Label" HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                <Label x:Name="mr_tipus" Content="Label" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="vk_nev" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="vk_vram" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ramokvalaszt" HorizontalAlignment="Left" Margin="10,33,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" SelectionChanged="ValtRAM"/>
+                <Label x:Name="mr_nev" Content="Label" HorizontalAlignment="Left" Margin="10,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="mr_kapac" Content="Label" HorizontalAlignment="Left" Margin="10,91,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="mr_tipus" Content="Label" HorizontalAlignment="Left" Margin="10,122,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label x:Name="tipusok" Content="RAM Tipusok &#xD;&#xA;20&#x9;DDR&#xD;&#xA;21&#x9;DDR2&#xD;&#xA;24&#x9;DDR3&#xD;&#xA;26&#x9;DDR4&#xD;&#xA;" HorizontalAlignment="Left" Margin="171,108,0,0" Grid.Row="1" VerticalAlignment="Top" Height="87" Width="91"/>
                 <Button Content="?" HorizontalAlignment="Left" Margin="230,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="22" Height="22" Click="Button_Click"/>
-                <ComboBox x:Name="drivevalaszt" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="ValtDrive"/>
-                <Label x:Name="nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                <Label x:Name="Gyart" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                <Label x:Name="particiok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                <Label Content="Memória" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Width="130"/>
-                <Label x:Name="cpufoklab" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="gpufoklab" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="drivevalaszt" Grid.Column="1" HorizontalAlignment="Left" Margin="10,33,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionChanged="ValtDrive"/>
+                <Label x:Name="nev" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,60,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.553,0.231"/>
+                <Label x:Name="Gyart" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,91,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label x:Name="particiok" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,122,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label Content="Memória" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="130" Grid.Row="1"/>
+                <Label x:Name="cpufoklab" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="gpufoklab" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="osszhely" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="10,153,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                <Label Content="Meghajtók" Grid.Column="1" HorizontalAlignment="Left" Margin="10,2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
             </Grid>
         </TabItem>
-        
+
         <TabItem Header="Szoftver">
             <Grid>
-                <DataGrid x:Name="SzoftverDG"  HorizontalAlignment="Left" Height="371" Margin="10,10,0,0" VerticalAlignment="Top" Width="766" AutoGenerateColumns="False">
+                <DataGrid x:Name="SzoftverDG"  HorizontalAlignment="Left" Height="371" Margin="10,10,0,0" VerticalAlignment="Top" Width="766" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" Value="BlanchedAlmond"></Setter>

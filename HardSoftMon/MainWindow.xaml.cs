@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using System.IO;
 using OpenHardwareMonitor;
 using OpenHardwareMonitor.Hardware;
+using System.Windows.Threading;
 
 namespace HardSoftMon
 {
@@ -30,11 +31,11 @@ namespace HardSoftMon
         List<Ram> ramok = new List<Ram>();
         List<Drives> driveok = new List<Drives>();
         bool ki = true;
-        Computer computer = new Computer() { CPUEnabled = true };
-        // Double hofok = 0;
+        Computer computer = new Computer() { CPUEnabled = true, GPUEnabled = true };
         public MainWindow()
         {
             computer.Open();
+            Idozito();
             InitializeComponent();
             Alaplap();
             Processzor();
@@ -45,6 +46,20 @@ namespace HardSoftMon
             Betoltes();
             GPUFok();
             CPUFok();
+        }
+
+        public void Idozito()
+        {
+            DispatcherTimer idozito = new DispatcherTimer();
+            idozito.Interval = TimeSpan.FromSeconds(1.5);
+            idozito.Tick += idozito_Tick;
+            idozito.Start();
+        }
+        void idozito_Tick(object sender, EventArgs e)
+        {
+            CPUFok();
+            GPUFok();
+
         }
         public void GPUFok()
         {
@@ -58,10 +73,7 @@ namespace HardSoftMon
                     {
                         if (x.SensorType == SensorType.Temperature)
                         {
-                            if (x.Value != null)
-                            {
-                                gpufok = $" a hőfok: {x.Value.Value}°C";
-                            }
+                                gpufok = $" a hőfok: {x.Value.Value}°C\r\n";
                         }
                     }
                 }
@@ -71,14 +83,23 @@ namespace HardSoftMon
 
         public void CPUFok()
         {
-            ManagementObjectSearcher cpuxd = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
-            /*foreach (var item in cpuxd.Get())
+            string cpufok = "";
+            foreach (var item in computer.Hardware)
             {
-                hofok = Convert.ToDouble(item["CurrentTemperature"].ToString());
-                // Convert the value to celsius degrees
-                hofok = (hofok - 2732) / 10.0;
+                if (item.HardwareType == HardwareType.CPU)
+                {
+                    item.Update();
+
+                    foreach (var szenzor in item.Sensors)
+                    {
+                        if (szenzor.SensorType == SensorType.Temperature)
+                        {
+                            cpufok += $"A hőfok: {szenzor.Name} = {szenzor.Value.Value}°C\r\n";
+                        }
+                    }
+                }
             }
-            cpufoklab.Content =$"A CPU hőfoka: {hofok}";*/
+            cpufoklab.Content = cpufok;
         }
         public void Alaplap()
         {
@@ -129,7 +150,7 @@ namespace HardSoftMon
             foreach (var item in meghajtok.Get())
             {
                 if (item != null)
-                    driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Name"].ToString(), item["Partitions"].ToString()));
+                    driveok.Add(new Drives(item["Manufacturer"].ToString(), item["Model"].ToString(), item["Partitions"].ToString(), SizeSuffix(Convert.ToInt64(item["Size"].ToString()))));
             }
         }
 
@@ -219,6 +240,7 @@ namespace HardSoftMon
             nev.Content = $"Név: {sldrive.Nev}";
             Gyart.Content = $"{sldrive.Gyarto}";
             particiok.Content = $"A partíciók száma: {sldrive.Particio}";
+            osszhely.Content = $"A meghajtó mérete: {sldrive.Helyossz}";
         }
     }
 }
