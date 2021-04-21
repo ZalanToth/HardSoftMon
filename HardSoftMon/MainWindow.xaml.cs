@@ -31,7 +31,7 @@ namespace HardSoftMon
         List<Ram> ramok = new List<Ram>();
         List<Drives> driveok = new List<Drives>();
         bool ki = true;
-        Computer computer = new Computer() { CPUEnabled = true, GPUEnabled = true };
+        Computer computer = new Computer() { CPUEnabled = true, GPUEnabled = true, MainboardEnabled = true };
         public MainWindow()
         {
             computer.Open();
@@ -46,6 +46,7 @@ namespace HardSoftMon
             Betoltes();
             GPUFok();
             CPUFok();
+            AlaplapFok();
         }
 
         public void Idozito()
@@ -59,7 +60,27 @@ namespace HardSoftMon
         {
             CPUFok();
             GPUFok();
+            Alaplap();
+        }
 
+        public void AlaplapFok()
+        {
+            string alaplapfok = "";
+            foreach (var item in computer.Hardware)
+            {
+                if (item.HardwareType == HardwareType.Mainboard)
+                {
+                    item.Update();
+                    foreach (var x in item.Sensors)
+                    {
+                        if (x.SensorType == SensorType.Temperature)
+                        {
+                            alaplapfok = $" a hőfok: {x.Value.Value}°C\r\n";
+                        }
+                    }
+                }
+            }
+            al_hofok.Content = alaplapfok;
         }
         public void GPUFok()
         {
